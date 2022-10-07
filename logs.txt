@@ -1,0 +1,12 @@
+snap    2.57.2
+snapd   2.57.2
+series  16
+neon    20.04
+kernel  5.15.0-46-generic
+snap "chromium" is already installed, see 'snap help refresh'
+snap "discord" is already installed, see 'snap help refresh'
+snap "spotify" is already installed, see 'snap help refresh'
+snap "code" is already installed, see 'snap help refresh'
+snap "htop" is already installed, see 'snap help refresh'
+snap "vlc" is already installed, see 'snap help refresh'
+error: snap "neoftech" not found
