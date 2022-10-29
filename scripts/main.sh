@@ -42,7 +42,7 @@ fi
 
 installations(){
   echo "[Installations]"
-  snaps=("chromium" "discord" "spotify" "code --classic" "htop" "vlc" "neoftech")
+  snaps=("chromium" "discord" "spotify" "code --classic" "htop" "vlc" "neofetch")
   for ((i = 0; i < ${#snaps[@]}; i++));do
     install ${snaps[$i]}
   done
