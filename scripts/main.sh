@@ -6,6 +6,7 @@ GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 OK='\033[0;32m●\033[0m'
 KO='\033[0;31m●\033[0m'
+NS='\033[0;33m●\033[0m' # not sure
 logs="./logs.txt"
 
 
@@ -41,24 +42,43 @@ fi
 }
 
 installations(){
-  echo "[Installations]"
-  snaps=("chromium" "discord" "spotify" "code --classic" "htop" "vlc" "neofetch")
+  echo "[Installations]"  
+  echo -e "\n\t [snap]"
+  snaps=("chromium" "discord" "spotify" "code --classic" "htop" "vlc")
   for ((i = 0; i < ${#snaps[@]}; i++));do
-    install ${snaps[$i]}
+    install_snap ${snaps[$i]}
+  done
+  echo -e "\n\t [apt]"
+  apts=("neofetch")
+  for ((i = 0; i < ${#apts[@]}; i++));do
+    install_apt ${apts[$i]}
   done
 }
 
+install_apt() {
+  echo -e " \t [ ] $1"
+  sudo apt install $1 -y &>> $logs
+  if [ $? -eq 0 ];then
+      print_state $1 $OK
+  else
+      print_state $1 $NS
+  fi
+}
+
+print_state() {
+  echo -e " \t \e[1A\e[K[$2] $1\r"
+}
 
 
-install(){
+install_snap(){
   echo -e " \t [ ] $1"
   sudo snap install $1 --classic &>> $logs
   
 
   if [ $? -eq 0 ];then
-      echo -e " \t \e[1A\e[K[$OK] $1\r"
+      print_state $1 $OK
   else
-      echo -e " \t \e[1A\e[K[$KO] $1\r"
+      print_state $1 $KO
   fi
   }
 
