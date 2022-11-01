@@ -49,7 +49,7 @@ installations(){
     install_snap ${snaps[$i]}
   done
   echo -e "\n\t [apt]"
-  apts=("neofetch" "git")
+  apts=("neofetch" "git" "vim")
   for ((i = 0; i < ${#apts[@]}; i++));do
     install_apt ${apts[$i]}
   done
